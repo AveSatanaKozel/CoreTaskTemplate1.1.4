@@ -1,31 +1,13 @@
 package jm.task.core.jdbc;
 
 import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.service.UserServiceHibImpl;
 import jm.task.core.jdbc.service.UserServiceImpl;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 
 public class Main {
 
     public static void main(String[] args) {
-//        SessionFactory factory = new Configuration()
-//                .configure("hibernate.cfg.xml")
-//                .addAnnotatedClass(User.class)
-//                .buildSessionFactory();
-//
-//        try {
-//            Session session = factory.getCurrentSession();
-//
-//
-//            User hiberUser = new User("Hiber", "User", (byte) 80);
-//            session.beginTransaction();
-//            session.save(hiberUser);
-//            session.getTransaction().commit();
-//        } finally {
-//            factory.close();
-//        }
 
         UserServiceImpl userService = new UserServiceImpl();
         userService.createUsersTable();
@@ -41,5 +23,24 @@ public class Main {
 //        userService.removeUserById(2);
         userService.cleanUsersTable();
         userService.dropUsersTable();
+
+
+
+
+        //hibernate start here
+
+
+//        UserServiceHibImpl userServiceHib = new UserServiceHibImpl();
+//        userServiceHib.createUsersTable();
+//        userServiceHib.saveUser("Boris", "Britva", (byte) 45);
+//        userServiceHib.saveUser("Ivan", "Petrov", (byte) 10);
+//        userServiceHib.saveUser("Nyash", "Myash", (byte) 35);
+////        userServiceHib.removeUserById(10);
+//        for (User s : userServiceHib.getAllUsers()) {
+//            System.out.println(s);
+//        }
+//
+//        userServiceHib.cleanUsersTable();
+//        userServiceHib.dropUsersTable();
     }
 }

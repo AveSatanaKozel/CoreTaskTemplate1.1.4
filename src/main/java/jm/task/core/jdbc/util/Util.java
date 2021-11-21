@@ -1,6 +1,16 @@
 package jm.task.core.jdbc.util;
 
 
+import jm.task.core.jdbc.model.User;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+
 import java.sql.*;
 
 public class Util {
@@ -29,6 +39,26 @@ public class Util {
             e.printStackTrace();
         }
         return connection;
+    }
+
+    public static SessionFactory getFactory() {
+        SessionFactory factory = null;
+//        Metadata factory = null;
+        try {
+            factory = new Configuration()
+                    .configure("hibernate.cfg.xml")
+                    .addAnnotatedClass(User.class)
+                    .buildSessionFactory();
+
+        } catch (Throwable e) {
+            System.out.println("Initial SessionFactory creation failed" + e);
+
+        }
+        return factory;
+    }
+
+    public static Session getSession (){
+        return Util.getFactory().openSession();
     }
 }
 
