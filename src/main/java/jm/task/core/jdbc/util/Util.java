@@ -2,16 +2,14 @@ package jm.task.core.jdbc.util;
 
 
 import jm.task.core.jdbc.model.User;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Util {
     private static final String URL = "jdbc:mysql://localhost:3306/mydbtest";
@@ -31,10 +29,6 @@ public class Util {
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
-//            if (!connection.isClosed()) {
-//                System.out.println("connect with BD");
-//            }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -43,7 +37,6 @@ public class Util {
 
     public static SessionFactory getFactory() {
         SessionFactory factory = null;
-//        Metadata factory = null;
         try {
             factory = new Configuration()
                     .configure("hibernate.cfg.xml")

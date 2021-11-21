@@ -1,7 +1,6 @@
 package jm.task.core.jdbc;
 
 import jm.task.core.jdbc.model.User;
-import jm.task.core.jdbc.service.UserServiceHibImpl;
 import jm.task.core.jdbc.service.UserServiceImpl;
 
 
@@ -23,24 +22,5 @@ public class Main {
 //        userService.removeUserById(2);
         userService.cleanUsersTable();
         userService.dropUsersTable();
-
-
-
-
-        //hibernate start here
-
-
-//        UserServiceHibImpl userServiceHib = new UserServiceHibImpl();
-//        userServiceHib.createUsersTable();
-//        userServiceHib.saveUser("Boris", "Britva", (byte) 45);
-//        userServiceHib.saveUser("Ivan", "Petrov", (byte) 10);
-//        userServiceHib.saveUser("Nyash", "Myash", (byte) 35);
-////        userServiceHib.removeUserById(10);
-//        for (User s : userServiceHib.getAllUsers()) {
-//            System.out.println(s);
-//        }
-//
-//        userServiceHib.cleanUsersTable();
-//        userServiceHib.dropUsersTable();
     }
 }

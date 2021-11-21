@@ -2,12 +2,8 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
@@ -49,8 +45,7 @@ public class UserDaoHibernateImpl implements UserDao {
         user.setLastName(lastName);
         user.setAge(age);
 
-//        try {
-        if (session.isOpen()){
+        if (session.isOpen()) {
             System.out.println("Сессия открыта");
         } else {
             System.out.println("сессия закрыта");
@@ -59,71 +54,35 @@ public class UserDaoHibernateImpl implements UserDao {
         session.getTransaction().begin();
         session.save(user);
         session.getTransaction().commit();
-//        if (session.isOpen()){
-//            System.out.println("Сессия открыта");
-//        }
-//        session.flush();
+
         System.out.println("User с именем – " + name + " добавлен в базу данных");
 
-//        } finally {
-//            try {
-//                session.close();
-//            } catch (HibernateException e) {
-//                e.printStackTrace();
-//            }
-//        }
     }
 
     @Override
     public void removeUserById(long id) {
-//        try {
-            session.beginTransaction();
-            session.createQuery("delete User WHERE id = :id")
-                    .setParameter("id", id)
-                    .executeUpdate();
-            session.getTransaction().commit();
-//        } finally {
-//            try {
-//                session.close();
-//            } catch (HibernateException e) {
-//                e.printStackTrace();
-//            }
-//        }
-
+        session.beginTransaction();
+        session.createQuery("delete User WHERE id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
+        session.getTransaction().commit();
     }
 
     @Override
     public List<User> getAllUsers() {
-
-//        try {
-            session.beginTransaction();
-            List<User> userList = session
-                    .createQuery("from User")
-                    .getResultList();
-            session.getTransaction().commit();
-            return userList;
-//        } finally {
-//            try {
-//                session.close();
-//            } catch (HibernateException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        session.beginTransaction();
+        List<User> userList = session
+                .createQuery("from User")
+                .getResultList();
+        session.getTransaction().commit();
+        return userList;
     }
 
     @Override
     public void cleanUsersTable() {
-//        try {
-            session.beginTransaction();
-            session.createQuery("delete User")
-                    .executeUpdate();
-            session.getTransaction().commit();
-//        } finally {
-//            try {
-//                session.close();
-//            } catch (HibernateException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        session.beginTransaction();
+        session.createQuery("delete User")
+                .executeUpdate();
+        session.getTransaction().commit();
     }
 }
