@@ -9,14 +9,6 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
     private PreparedStatement preparedStatement = null;
-//    private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS mydbtest.users" +
-//            "(id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT," +
-//            " name VARCHAR(45), lastName VARCHAR(100), age TINYINT)";
-//    private static final String DROP_TABLE = "DROP TABLE IF EXISTS mydbtest.users";
-//    private static final String INSERT_NEW = "INSERT INTO mydbtest.users (name, lastName, age) VALUES (?, ?, ?)";
-//    private static final String GET_ALL = "SELECT * FROM mydbtest.users";
-//    private static final String DELETE_USER = "DELETE FROM mydbtest.users WHERE ID = ?";
-//    private static final String CLEAN_USERS = "TRUNCATE TABLE mydbtest.users";
 
     public UserDaoJDBCImpl() {
 
