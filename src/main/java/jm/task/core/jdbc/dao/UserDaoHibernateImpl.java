@@ -9,21 +9,17 @@ import java.util.List;
 public class UserDaoHibernateImpl implements UserDao {
     private Session session = Util.getSession();
 
-    private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS mydbtest.users" +
-            "(id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT," +
-            " name VARCHAR(45), lastName VARCHAR(100), age TINYINT)";
-    private static final String DROP_TABLE = "DROP TABLE IF EXISTS mydbtest.users";
-
 
     public UserDaoHibernateImpl() {
-
     }
 
 
     @Override
     public void createUsersTable() {
         session.beginTransaction();
-        session.createSQLQuery(CREATE_TABLE)
+        session.createSQLQuery("CREATE TABLE IF NOT EXISTS mydbtest.users" +
+                        "(id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                        " name VARCHAR(45), lastName VARCHAR(100), age TINYINT)")
                 .executeUpdate();
         session.getTransaction().commit();
 
@@ -32,7 +28,7 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void dropUsersTable() {
         session.beginTransaction();
-        session.createSQLQuery(DROP_TABLE)
+        session.createSQLQuery("DROP TABLE IF EXISTS mydbtest.users")
                 .executeUpdate();
         session.getTransaction().commit();
 
@@ -56,7 +52,6 @@ public class UserDaoHibernateImpl implements UserDao {
         session.getTransaction().commit();
 
         System.out.println("User с именем – " + name + " добавлен в базу данных");
-
     }
 
     @Override
